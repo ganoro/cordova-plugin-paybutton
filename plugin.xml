@@ -19,7 +19,7 @@
   <platform name="ios">
     
     <config-file target="config.xml" parent="/*">
-      <feature name="Hello">
+      <feature name="Paybutton">
         <param name="ios-package" value="Paybutton" />
       </feature>
     </config-file>
