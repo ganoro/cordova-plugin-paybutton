@@ -20,12 +20,12 @@
     
     <config-file target="config.xml" parent="/*">
       <feature name="Hello">
-        <param name="ios-package" value="HWPHello" />
+        <param name="ios-package" value="Paybutton" />
       </feature>
     </config-file>
 
-    <header-file src="src/ios/HWPHello.h"/>
-    <source-file src="src/ios/HWPHello.m"/>
+    <header-file src="src/ios/Paybutton.h"/>
+    <source-file src="src/ios/Paybutton.m"/>
   </platform>
 
 </plugin>
