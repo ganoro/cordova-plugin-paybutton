@@ -12,7 +12,7 @@
   <asset src="www/paybutton.js" target="js/paybutton.js"/>
 
   <js-module src="www/paybutton.js" name="paybutton">
-    <clobbers target="paybutton" />
+    <clobbers target="window.plugins.paybutton" />
   </js-module>
 
  
