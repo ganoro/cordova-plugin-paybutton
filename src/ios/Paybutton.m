@@ -1,6 +1,6 @@
-#import "HWPHello.h"
+#import "Paybutton.h"
 
-@implementation HWPHello
+@implementation Paybutton
 
 - (void)greet:(CDVInvokedUrlCommand*)command
 {
