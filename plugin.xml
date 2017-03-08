@@ -15,8 +15,17 @@
     <clobbers target="window.plugins.paybutton" />
   </js-module>
 
- 
+ <dependency id="cordova-plugin-cocoapod-support"/>
+
   <platform name="ios">
+     <pods-config ios-min-version="9.0" use-frameworks="true">
+             <!-- optionally add private spec sources -->
+            <source url="https://github.com/CocoaPods/Specs.git"/>
+            <source url="https://bitbucket.org/mpymnt/io.mpymnt.repo.pods.git"/>
+      </pods-config>
+
+      <pod name="payworks" version="2.18.0" />
+      <pod name="payworks.paybutton" version="2.18.0" />
     
     <config-file target="config.xml" parent="/*">
       <feature name="Paybutton">
