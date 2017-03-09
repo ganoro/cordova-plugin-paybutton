@@ -18,7 +18,7 @@
  <dependency id="cordova-plugin-cocoapod-support"/>
 
   <platform name="ios">
-     <pods-config ios-min-version="9.0" use-frameworks="true">
+     <pods-config ios-min-version="9.0">
              <!-- optionally add private spec sources -->
             <source url="https://github.com/CocoaPods/Specs.git"/>
             <source url="https://bitbucket.org/mpymnt/io.mpymnt.repo.pods.git"/>
