@@ -1,4 +1,8 @@
 #import "Paybutton.h"
+#import <UIKit/UIKit.h>
+#import <mpos-ui/mpos-ui.h>
+#import <mpos.core/mpos-extended.h>
+
 
 @implementation Paybutton
 
@@ -16,18 +20,18 @@
 
 
 
-- (void)transaction:(CDVInvokedUrlCommand*)command
+- (void)test:(CDVInvokedUrlCommand*)command
 {
-	NSLog(@"Hitting transction");
+  NSLog(@"Hitting transction");
 
-	NSMutableDictionary* settings = [command.arguments objectAtIndex:0];
-	NSString* store = [settings objectForKey:@"store"];
-	NSString* user = [settings objectForKey:@"user"];
+  NSMutableDictionary* settings = [command.arguments objectAtIndex:0];
+  NSString* store = [settings objectForKey:@"store"];
+  NSString* user = [settings objectForKey:@"user"];
 
-	NSLog(@"%@", store);
-	NSLog(@"%@", user);
+  NSLog(@"%@", store);
+  NSLog(@"%@", user);
 
-	NSString* msg = [NSString stringWithFormat: @"Making a charge for, %@", store];
+  NSString* msg = [NSString stringWithFormat: @"Making a charge for, %@", store];
 
     CDVPluginResult* result = [CDVPluginResult
                                resultWithStatus:CDVCommandStatus_OK
@@ -39,8 +43,8 @@
 
 
 
-- (IBAction)paymentButtonClicked:(id)sender {
-    MPUMposUi *ui = [MPUMposUi initializeWithProviderMode:MPProviderModeMOCK
+- (void)transaction:(CDVInvokedUrlCommand*)command {
+   self.mposUi = [MPUMposUi initializeWithProviderMode:MPProviderModeMOCK
                                        merchantIdentifier:@"merchantIdentifier"
                                            merchantSecret:@"merchantSecretKey"];
     
@@ -60,8 +64,8 @@
                                                                       optionals.customIdentifier = @"yourReferenceForTheTransaction";
                                                                   }];
     
-    ui.configuration.terminalParameters = ap;
-    ui.configuration.summaryFeatures = MPUMposUiConfigurationSummaryFeatureSendReceiptViaEmail;
+    self.mposUi.configuration.terminalParameters = ap;
+    self.mposUi.configuration.summaryFeatures = MPUMposUiConfigurationSummaryFeatureSendReceiptViaEmail;
     // Add this line, if you do also want to offer printed receipts
     //ui.configuration.printerParameters =
     //ui.configuration.summaryFeatures |= MPUMposUiConfigurationSummaryFeaturePrintReceipt;
@@ -69,10 +73,10 @@
     //ui.configuration.signatureCapture = MPUMposUiConfigurationSignatureCaptureOnReceipt;
     
     
-    UIViewController *viewController = [ui createTransactionViewControllerWithTransactionParameters:tp
+    UIViewController *viewController = [self.mposUi createTransactionViewControllerWithTransactionParameters:tp
                                                                                           completed:^(UIViewController * _Nonnull controller, MPUTransactionResult result, MPTransaction * _Nullable transaction)
                                         {
-                                            [self dismissViewControllerAnimated:YES completion:NULL];
+                                            [self.viewController dismissViewControllerAnimated:YES completion:NULL];
                                             
                                             UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Result"
                                                                                             message:@""
@@ -97,8 +101,7 @@
     } else { // Show as Form on iPad
         modalNav.modalPresentationStyle = UIModalPresentationFormSheet;
     }
-    [self presentViewController:modalNav animated:YES completion:NULL];
+    [self.viewController presentViewController:modalNav animated:YES completion:NULL];
 }
-
 
 @end

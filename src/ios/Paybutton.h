@@ -2,10 +2,13 @@
 #import <UIKit/UIKit.h>
 #import <mpos-ui/mpos-ui.h>
 
+
 @interface Paybutton : CDVPlugin
 
 - (void) greet:(CDVInvokedUrlCommand*)command;
-- (void) transaction:(CDVInvokedUrlCommand*)command;
-- (IBAction)paymentButtonClicked:(id)sender;
+- (void) test:(CDVInvokedUrlCommand*)command;
+- (void)transaction:(CDVInvokedUrlCommand*)command;
+
+@property (nonatomic, strong) MPUMposUi *mposUi;
 
 @end
